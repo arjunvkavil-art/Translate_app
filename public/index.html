@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Place Screen Translator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    #video-container {
+      display: none;
+    }
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none; /* Clicks go through the overlay */
+      z-index: 100;
+    }
+    .translated-text {
+      position: absolute;
+      background-color: white;
+      color: black;
+      border: 1px solid #ccc;
+      padding: 2px;
+      font-size: 14px;
+      pointer-events: auto; /* Text boxes are clickable */
+    }
+  </style>
+</head>
+<body>
+  <h1>In-Place Screen Translator</h1>
+  <button id="start-capture">Start Capture</button>
+
+  <div id="video-container">
+    <video id="screen-video" autoplay></video>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <div id="overlay"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
