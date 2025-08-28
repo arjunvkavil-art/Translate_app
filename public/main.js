@@ -51,11 +51,16 @@ ws.onclose = () => {
 };
 
 const startButton = document.getElementById('start-capture');
+const heading = document.querySelector('h1');
 const video = document.getElementById('screen-video');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 startButton.addEventListener('click', async () => {
+  // Hide the controls
+  heading.style.display = 'none';
+  startButton.style.display = 'none';
+
   try {
     const stream = await navigator.mediaDevices.getDisplayMedia({
       video: { cursor: 'always' },

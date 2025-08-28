@@ -3,11 +3,7 @@ const http = require('http');
 const WebSocket = require('ws');
 const path = require('path');
 const Tesseract = require('tesseract.js');
-let translate;
-import('@vitalets/google-translate-api').then((module) => {
-  translate = module.translate;
-  console.log('Translation module loaded.');
-});
+const translate = require('translate-google');
 
 const app = express();
 const server = http.createServer(app);
@@ -45,18 +41,18 @@ wss.on('connection', (ws) => {
 
       const { data } = await worker.recognize(imageBuffer);
 
-      if (translate && data.paragraphs && data.paragraphs.length > 0) {
+      if (data.paragraphs && data.paragraphs.length > 0) {
         const translations = [];
         for (const para of data.paragraphs) {
           if (para.text.trim()) {
             try {
-              const { text: translatedText } = await translate(para.text, { from: 'zh-cn', to: 'en' });
+              const translatedText = await translate(para.text, { from: 'zh-cn', to: 'en' });
               translations.push({
                 text: translatedText,
                 bbox: para.bbox
               });
             } catch (translateError) {
-              console.error('Translation Error:', translateError.name);
+              console.error('Translation Error:', translateError);
               // If translation fails, send original text with its bbox
               translations.push({
                 text: para.text,
