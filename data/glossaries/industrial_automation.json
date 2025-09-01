@@ -1,0 +1,158 @@
+[
+  {
+    "chinese": "可编程逻辑控制器",
+    "english": "Programmable Logic Controller (PLC)",
+    "category": "automation",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "人机界面",
+    "english": "Human Machine Interface (HMI)",
+    "category": "automation", 
+    "confidence": 1.0
+  },
+  {
+    "chinese": "变频器",
+    "english": "Variable Frequency Drive (VFD)",
+    "category": "motor_control",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "伺服驱动器",
+    "english": "Servo Drive",
+    "category": "motor_control",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "传感器",
+    "english": "Sensor", 
+    "category": "instrumentation",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "执行器",
+    "english": "Actuator",
+    "category": "instrumentation", 
+    "confidence": 1.0
+  },
+  {
+    "chinese": "现场总线",
+    "english": "Fieldbus",
+    "category": "communication",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "以太网",
+    "english": "Ethernet",
+    "category": "communication",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "工业机器人",
+    "english": "Industrial Robot",
+    "category": "robotics",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "关节",
+    "english": "Joint",
+    "category": "robotics",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "末端执行器",
+    "english": "End Effector",
+    "category": "robotics",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "工作空间",
+    "english": "Workspace",
+    "category": "robotics",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "安全防护",
+    "english": "Safety Protection",
+    "category": "safety",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "急停",
+    "english": "Emergency Stop",
+    "category": "safety",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "光栅",
+    "english": "Light Curtain",
+    "category": "safety",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "安全继电器",
+    "english": "Safety Relay",
+    "category": "safety",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "生产线",
+    "english": "Production Line",
+    "category": "manufacturing",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "工艺流程",
+    "english": "Process Flow",
+    "category": "manufacturing",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "质量控制",
+    "english": "Quality Control",
+    "category": "manufacturing",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "设备维护",
+    "english": "Equipment Maintenance",
+    "category": "maintenance",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "预防性维护",
+    "english": "Preventive Maintenance",
+    "category": "maintenance",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "故障诊断",
+    "english": "Fault Diagnosis",
+    "category": "maintenance",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "数据采集",
+    "english": "Data Acquisition",
+    "category": "monitoring",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "实时监控",
+    "english": "Real-time Monitoring",
+    "category": "monitoring",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "历史数据",
+    "english": "Historical Data",
+    "category": "monitoring",
+    "confidence": 1.0
+  },
+  {
+    "chinese": "报表",
+    "english": "Report",
+    "category": "monitoring",
+    "confidence": 1.0
+  }
+]

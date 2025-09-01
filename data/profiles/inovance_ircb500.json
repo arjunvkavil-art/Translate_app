@@ -1,0 +1,100 @@
+{
+  "name": "Inovance IRCB500",
+  "description": "Chinese industrial robot controller software",
+  "executable": "ircb500.exe",
+  "window_title_pattern": "*IRCB500*",
+  "manufacturer": "Inovance",
+  "category": "robot_controller",
+  
+  "ocr_settings": {
+    "confidence_threshold": 0.6,
+    "languages": ["ch"],
+    "preprocessing": {
+      "denoise": true,
+      "enhance_contrast": true,
+      "scale_factor": 2.0
+    }
+  },
+  
+  "ui_regions": {
+    "main_toolbar": [0, 0, 800, 80],
+    "menu_bar": [0, 80, 200, 500],
+    "status_bar": [0, 580, 800, 50],
+    "properties_panel": [600, 80, 200, 500],
+    "main_workspace": [200, 80, 400, 500]
+  },
+  
+  "common_terms": {
+    "系统": "System",
+    "配置": "Configuration", 
+    "参数": "Parameters",
+    "运动": "Motion",
+    "示教": "Teaching",
+    "程序": "Program",
+    "调试": "Debug",
+    "监控": "Monitor",
+    "报警": "Alarm",
+    "故障": "Fault",
+    "复位": "Reset",
+    "启动": "Start",
+    "停止": "Stop",
+    "暂停": "Pause",
+    "继续": "Continue",
+    "手动": "Manual",
+    "自动": "Auto",
+    "单步": "Single Step",
+    "连续": "Continuous",
+    "速度": "Speed",
+    "位置": "Position",
+    "坐标": "Coordinate",
+    "轴": "Axis",
+    "关节": "Joint",
+    "工具": "Tool",
+    "工件": "Workpiece",
+    "安全": "Safety",
+    "限位": "Limit",
+    "原点": "Origin",
+    "回零": "Home",
+    "标定": "Calibration"
+  },
+  
+  "ui_elements": {
+    "buttons": {
+      "确定": "OK",
+      "取消": "Cancel", 
+      "应用": "Apply",
+      "重置": "Reset",
+      "保存": "Save",
+      "加载": "Load",
+      "导入": "Import",
+      "导出": "Export"
+    },
+    
+    "menus": {
+      "文件": "File",
+      "编辑": "Edit", 
+      "视图": "View",
+      "工具": "Tools",
+      "窗口": "Window",
+      "帮助": "Help"
+    },
+    
+    "dialogs": {
+      "错误": "Error",
+      "警告": "Warning", 
+      "信息": "Information",
+      "确认": "Confirmation"
+    }
+  },
+  
+  "error_codes": {
+    "E001": "Communication Error",
+    "E002": "Motor Fault",
+    "E003": "Position Limit Exceeded",
+    "E004": "Emergency Stop Activated",
+    "E005": "Teaching Mode Required",
+    "W001": "Low Battery Warning",
+    "W002": "High Temperature Warning",
+    "W003": "Maintenance Required"
+  }
+}

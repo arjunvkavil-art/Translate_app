@@ -1,0 +1,37 @@
+# Core dependencies
+opencv-python==4.8.1.78
+numpy==1.24.3
+Pillow==10.0.0
+PyQt5==5.15.9
+pynput==1.7.6
+
+# OCR engines
+paddlepaddle==2.5.1
+paddleocr==2.7.0.3
+pytesseract==0.3.10
+
+# Translation services
+googletrans==4.0.0rc1
+requests==2.31.0
+openai==0.28.1
+
+# Screen capture and window management
+pyautogui==0.9.54
+pygetwindow==0.0.9
+psutil==5.9.5
+
+# UI and overlay
+tkinter-tooltip==2.1.0
+
+# Data handling
+pandas==2.0.3
+sqlite3
+
+# Configuration
+pyyaml==6.0.1
+configparser==5.3.0
+
+# Utilities
+keyboard==0.13.5
+mouse==0.7.1
+threading-utils==0.3

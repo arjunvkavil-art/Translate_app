@@ -1,0 +1,62 @@
+{
+  "name": "Delta Screen Editor",
+  "description": "Delta HMI development software",
+  "executable": "deltascreen.exe",
+  "window_title_pattern": "*Delta*Screen*",
+  "manufacturer": "Delta",
+  "category": "hmi_software",
+  
+  "ocr_settings": {
+    "confidence_threshold": 0.65,
+    "languages": ["ch", "en"],
+    "preprocessing": {
+      "denoise": true,
+      "enhance_contrast": true,
+      "scale_factor": 1.5
+    }
+  },
+  
+  "ui_regions": {
+    "toolbox": [0, 80, 150, 500],
+    "design_area": [150, 80, 500, 400],
+    "properties": [650, 80, 200, 300],
+    "object_list": [650, 380, 200, 200],
+    "status_bar": [0, 580, 850, 30]
+  },
+  
+  "common_terms": {
+    "画面": "Screen",
+    "对象": "Object", 
+    "控件": "Control",
+    "按钮": "Button",
+    "文本": "Text",
+    "图形": "Graphics",
+    "图片": "Image",
+    "动画": "Animation",
+    "趋势图": "Trend Chart",
+    "报表": "Report",
+    "报警": "Alarm",
+    "事件": "Event",
+    "脚本": "Script",
+    "宏": "Macro",
+    "变量": "Variable",
+    "地址": "Address",
+    "通信": "Communication",
+    "协议": "Protocol",
+    "驱动": "Driver",
+    "连接": "Connection",
+    "设备": "Device",
+    "站点": "Station",
+    "网络": "Network",
+    "配置": "Configuration",
+    "属性": "Properties",
+    "样式": "Style",
+    "字体": "Font",
+    "颜色": "Color",
+    "位置": "Position",
+    "大小": "Size",
+    "可见": "Visible",
+    "使能": "Enable",
+    "禁用": "Disable"
+  }
+}
