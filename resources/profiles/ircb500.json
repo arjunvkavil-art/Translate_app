@@ -1,0 +1,28 @@
+{
+  "name": "Inovance IRCB500",
+  "id": "ircb500",
+  "ocr": {
+    "lang": "eng+chi_sim",
+    "psm": 6,
+    "dpi": 110,
+    "contrast": 1.2,
+    "sharpen": true
+  },
+  "translation": {
+    "from": "zh-cn",
+    "to": "en",
+    "glossaries": [
+      "industrial_zh_en.csv"
+    ]
+  },
+  "regions": [
+    {
+      "name": "top_toolbar",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 120
+    }
+  ]
+}
+

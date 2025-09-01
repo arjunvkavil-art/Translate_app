@@ -1,0 +1,17 @@
+{
+  "name": "Siemens STEP 7 (Chinese)",
+  "id": "siemens_step7_cn",
+  "ocr": {
+    "lang": "eng+chi_sim",
+    "psm": 6
+  },
+  "translation": {
+    "from": "zh-cn",
+    "to": "en",
+    "glossaries": [
+      "industrial_zh_en.csv"
+    ]
+  },
+  "regions": []
+}
+

@@ -1,0 +1,56 @@
+报警,Alarm
+启动,Start
+停止,Stop
+复位,Reset
+运行,Run
+伺服,Servo
+急停,E-Stop
+速度,Speed
+速度设置,Speed Setting
+电机,Motor
+驱动器,Drive
+报警复位,Alarm Reset
+参数,Parameter
+参数设置,Parameter Setting
+确认,Confirm
+取消,Cancel
+错误,Error
+警告,Warning
+信息,Information
+状态,Status
+手动,Manual
+自动,Auto
+联动,Interlock
+通信,Communication
+连接,Connect
+断开,Disconnect
+上传,Upload
+下载,Download
+读取,Read
+写入,Write
+保存,Save
+打开,Open
+关闭,Close
+轴,Axis
+位置,Position
+速度控制,Speed Control
+位置控制,Position Control
+扭矩控制,Torque Control
+设定,Setpoint
+实际值,Actual Value
+目标值,Target Value
+上限,Upper Limit
+下限,Lower Limit
+编码器,Encoder
+I/O,IO
+输入,Input
+输出,Output
+使能,Enable
+禁用,Disable
+超时,Timeout
+过流,Overcurrent
+过压,Overvoltage
+欠压,Undervoltage
+温度过高,Overtemperature
+初始化,Initialize
+完成,Complete
