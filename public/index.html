@@ -3,48 +3,553 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>In-Place Screen Translator</title>
+  <title>Live Screen Translator Pro</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     html, body {
-      background-color: transparent;
-      color: white; /* Let's make the default text color white for visibility */
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      overflow: hidden;
     }
-    body {
-      font-family: sans-serif;
+
+    .app-container {
+      display: flex;
+      height: 100vh;
     }
-    #video-container {
-      display: none;
+
+    .sidebar {
+      width: 350px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
     }
-    #overlay {
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #4a5568;
+    }
+
+    .logo i {
+      color: #667eea;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #48bb78;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .control-panel {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: #667eea;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .profile-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .profile-card:hover {
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+    }
+
+    .profile-card.active {
+      border-color: #667eea;
+      background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+    }
+
+    .profile-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 5px;
+    }
+
+    .profile-card p {
+      font-size: 14px;
+      color: #718096;
+      margin-bottom: 10px;
+    }
+
+    .profile-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #667eea;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .mode-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .mode-btn:hover {
+      border-color: #667eea;
+      background: #f7fafc;
+    }
+
+    .mode-btn.active {
+      border-color: #667eea;
+      background: #667eea;
+      color: white;
+    }
+
+    .control-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-secondary {
+      background: #f7fafc;
+      color: #4a5568;
+      border: 2px solid #e2e8f0;
+    }
+
+    .btn-secondary:hover {
+      background: #edf2f7;
+      border-color: #cbd5e0;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(245, 101, 101, 0.3);
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .setting-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .setting-item label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #4a5568;
+    }
+
+    .setting-item select,
+    .setting-item input {
+      padding: 8px 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    .setting-item select:focus,
+    .setting-item input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .translation-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none; /* Clicks go through the overlay */
-      z-index: 100;
+      pointer-events: none;
+      z-index: 1000;
     }
-    .translated-text {
+
+    .translation-box {
       position: absolute;
-      background-color: white;
-      color: black;
-      border: 1px solid #ccc;
-      padding: 2px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      padding: 8px 12px;
       font-size: 14px;
-      pointer-events: auto; /* Text boxes are clickable */
+      font-weight: 500;
+      color: #2d3748;
+      pointer-events: auto;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      max-width: 300px;
+      word-wrap: break-word;
+    }
+
+    .translation-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .translation-box .original {
+      font-size: 12px;
+      color: #718096;
+      margin-bottom: 4px;
+      font-style: italic;
+    }
+
+    .translation-box .translated {
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .region-selector {
+      position: fixed;
+      border: 2px dashed #667eea;
+      background: rgba(102, 126, 234, 0.1);
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #667eea;
+      font-weight: 500;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #e2e8f0;
+      border-top: 2px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
 <body>
-  <h1>In-Place Screen Translator</h1>
-  <button id="start-capture">Start Capture</button>
+  <div class="app-container">
+    <div class="sidebar">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-cogs"></i>
+          Translation Mode
+        </div>
+        
+        <div class="mode-selector">
+          <div class="mode-btn active" data-mode="full_screen">
+            <i class="fas fa-desktop"></i>
+            <div>Full Screen</div>
+          </div>
+          <div class="mode-btn" data-mode="region">
+            <i class="fas fa-crop"></i>
+            <div>Region</div>
+          </div>
+          <div class="mode-btn" data-mode="app_target">
+            <i class="fas fa-crosshairs"></i>
+            <div>App Target</div>
+          </div>
+        </div>
 
-  <div id="video-container">
-    <video id="screen-video" autoplay></video>
-    <canvas id="canvas"></canvas>
+        <div class="control-buttons">
+          <button class="btn btn-primary" id="start-capture">
+            <i class="fas fa-play"></i>
+            Start
+          </button>
+          <button class="btn btn-secondary" id="pause-capture">
+            <i class="fas fa-pause"></i>
+            Pause
+          </button>
+          <button class="btn btn-danger" id="stop-capture">
+            <i class="fas fa-stop"></i>
+            Stop
+          </button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-industry"></i>
+          Industrial Profiles
+        </div>
+        
+        <div class="profile-grid" id="profile-grid">
+          <!-- Profiles will be loaded dynamically -->
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-sliders-h"></i>
+          Settings
+        </div>
+        
+        <div class="settings-grid">
+          <div class="setting-item">
+            <label>OCR Engine</label>
+            <select id="ocr-engine">
+              <option value="tesseract">Tesseract</option>
+              <option value="paddleocr">PaddleOCR</option>
+            </select>
+          </div>
+          
+          <div class="setting-item">
+            <label>Translation Engine</label>
+            <select id="translation-engine">
+              <option value="google">Google Translate</option>
+              <option value="openai">OpenAI GPT</option>
+            </select>
+          </div>
+          
+          <div class="setting-item">
+            <label>Confidence Threshold</label>
+            <input type="range" id="confidence-threshold" min="0" max="100" value="50">
+            <span id="confidence-value">50%</span>
+          </div>
+          
+          <div class="setting-item">
+            <label>Update Frequency (ms)</label>
+            <input type="number" id="update-frequency" value="1000" min="500" max="5000">
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-chart-bar"></i>
+          Statistics
+        </div>
+        
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number" id="translations-count">0</div>
+            <div class="stat-label">Translations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="accuracy-rate">0%</div>
+            <div class="stat-label">Accuracy</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="uptime">00:00</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <div class="logo">
+          <i class="fas fa-language"></i>
+          Live Screen Translator Pro
+        </div>
+        <div class="status-indicator">
+          <div class="status-dot" id="status-dot"></div>
+          <span id="status-text">Ready</span>
+        </div>
+      </div>
+
+      <div class="control-panel">
+        <div class="section">
+          <div class="section-title">
+            <i class="fas fa-info-circle"></i>
+            Instructions
+          </div>
+          <div id="instructions">
+            <p><strong>Full Screen Mode:</strong> Captures and translates text from the entire screen in real-time.</p>
+            <p><strong>Region Mode:</strong> Select a specific area of the screen to monitor and translate.</p>
+            <p><strong>App Target Mode:</strong> Target a specific application window for translation.</p>
+            <p><strong>Industrial Profiles:</strong> Select a profile optimized for specific Chinese industrial software.</p>
+          </div>
+        </div>
+
+        <div class="section hidden" id="region-section">
+          <div class="section-title">
+            <i class="fas fa-crop"></i>
+            Region Selection
+          </div>
+          <div class="control-buttons">
+            <button class="btn btn-primary" id="select-region">
+              <i class="fas fa-mouse-pointer"></i>
+              Select Region
+            </button>
+            <button class="btn btn-secondary" id="clear-region">
+              <i class="fas fa-times"></i>
+              Clear Region
+            </button>
+          </div>
+          <div id="region-info">
+            <p>Click "Select Region" and drag to select the area you want to monitor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="overlay"></div>
+  <div class="translation-overlay" id="translation-overlay"></div>
+  <div class="region-selector" id="region-selector"></div>
 
   <script src="main.js"></script>
 </body>
