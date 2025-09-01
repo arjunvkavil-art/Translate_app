@@ -37,7 +37,15 @@
 </head>
 <body>
   <h1>In-Place Screen Translator</h1>
-  <button id="start-capture">Start Capture</button>
+  <div>
+    <label for="profile-select">Profile:</label>
+    <select id="profile-select"></select>
+    <button id="load-profile">Load Profile</button>
+  </div>
+  <div style="margin-top:8px;">
+    <button id="start-capture">Start Capture</button>
+    <button id="toggle-select">Toggle Region Select</button>
+  </div>
 
   <div id="video-container">
     <video id="screen-video" autoplay></video>
@@ -45,6 +53,19 @@
   </div>
 
   <div id="overlay"></div>
+
+  <div style="position:fixed; bottom:8px; left:8px; background:#000a; color:#fff; padding:8px; border-radius:6px; pointer-events:auto;">
+    <div>
+      <input id="text-input" placeholder="Paste text here" style="width:300px;" />
+      <button id="translate-text">Translate</button>
+      <span id="text-output" style="margin-left:8px;"></span>
+    </div>
+    <div style="margin-top:6px;">
+      <input id="dict-input" placeholder="Lookup term" style="width:200px;" />
+      <button id="dict-lookup">Lookup</button>
+      <span id="dict-output" style="margin-left:8px;"></span>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>

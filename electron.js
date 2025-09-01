@@ -1,4 +1,4 @@
-const { app, BrowserWindow, screen } = require('electron');
+const { app, BrowserWindow, screen, globalShortcut } = require('electron');
 const { fork } = require('child_process');
 const path = require('path');
 
@@ -24,8 +24,9 @@ function createWindow() {
     frame: false,
     alwaysOnTop: true,
     webPreferences: {
-      nodeIntegration: false, // It's a good practice to keep this false
-      contextIsolation: true, // And this true for security
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
     },
   });
 
@@ -45,6 +46,21 @@ function createWindow() {
     // Dereference the window object
     mainWindow = null;
   });
+
+  // Register a global hotkey to toggle mouse passthrough
+  const accelerator = 'CommandOrControl+Shift+T';
+  const registered = globalShortcut.register(accelerator, () => {
+    if (!mainWindow) return;
+    // toggle ignore mouse events
+    const currentlyIgnoring = mainWindow.isAlwaysOnTop(); // not ideal, track separately if needed
+    const newState = !mainWindow._ignoringMouse;
+    mainWindow.setIgnoreMouseEvents(newState, { forward: true });
+    mainWindow._ignoringMouse = newState;
+    mainWindow.webContents.send('toggle-select-mode');
+  });
+  if (!registered) {
+    console.warn('Global hotkey registration failed');
+  }
 }
 
 // This method will be called when Electron has finished
@@ -76,4 +92,5 @@ app.on('quit', () => {
     serverProcess.kill();
     serverProcess = null;
   }
+  globalShortcut.unregisterAll();
 });

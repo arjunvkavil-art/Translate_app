@@ -1,0 +1,17 @@
+{
+  "name": "Mitsubishi GX Developer",
+  "id": "mitsubishi_gx_developer",
+  "ocr": {
+    "lang": "eng+chi_sim",
+    "psm": 6
+  },
+  "translation": {
+    "from": "zh-cn",
+    "to": "en",
+    "glossaries": [
+      "industrial_zh_en.csv"
+    ]
+  },
+  "regions": []
+}
+
