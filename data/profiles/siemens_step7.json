@@ -1,0 +1,51 @@
+{
+  "name": "Siemens STEP 7",
+  "description": "Siemens PLC programming software",
+  "executable": "s7prjmgr.exe",
+  "window_title_pattern": "*STEP*",
+  "manufacturer": "Siemens",
+  "category": "plc_software",
+  
+  "ocr_settings": {
+    "confidence_threshold": 0.7,
+    "languages": ["ch", "de", "en"],
+    "preprocessing": {
+      "denoise": true,
+      "enhance_contrast": false,
+      "scale_factor": 1.5
+    }
+  },
+  
+  "ui_regions": {
+    "project_tree": [0, 100, 250, 500],
+    "main_editor": [250, 100, 550, 500],
+    "properties": [800, 100, 200, 300],
+    "output_window": [250, 600, 750, 150]
+  },
+  
+  "common_terms": {
+    "项目": "Project",
+    "程序块": "Program Block",
+    "数据块": "Data Block", 
+    "组织块": "Organization Block",
+    "功能": "Function",
+    "功能块": "Function Block",
+    "变量": "Variable",
+    "标签": "Tag",
+    "网络": "Network",
+    "梯形图": "Ladder Logic",
+    "指令": "Instruction",
+    "编译": "Compile",
+    "下载": "Download",
+    "上传": "Upload",
+    "在线": "Online",
+    "离线": "Offline",
+    "仿真": "Simulation",
+    "诊断": "Diagnostics",
+    "硬件配置": "Hardware Configuration",
+    "通信": "Communication",
+    "模块": "Module",
+    "机架": "Rack",
+    "插槽": "Slot"
+  }
+}

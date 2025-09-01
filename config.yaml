@@ -1,0 +1,67 @@
+# Live Screen Translator Configuration
+
+# OCR Settings
+ocr:
+  engine: "paddleocr"  # paddleocr, tesseract
+  languages: ["ch", "en"]  # Chinese and English
+  confidence_threshold: 0.7
+  use_gpu: false
+  
+# Translation Settings
+translation:
+  primary_engine: "google"  # google, deepl, openai
+  source_lang: "zh"
+  target_lang: "en"
+  use_glossary: true
+  context_aware: true
+  
+# Screen Capture Settings
+screen:
+  capture_fps: 2  # Frames per second for real-time monitoring
+  region_padding: 10  # Pixels around detected text
+  min_text_size: 12  # Minimum text height in pixels
+  
+# UI Settings
+ui:
+  overlay_opacity: 0.9
+  overlay_background: "#000000"
+  overlay_text_color: "#FFFFFF"
+  overlay_font_size: 12
+  overlay_timeout: 5000  # milliseconds
+  
+# Hotkeys
+hotkeys:
+  toggle_translation: "ctrl+shift+t"
+  capture_region: "ctrl+shift+r"
+  target_window: "ctrl+shift+w"
+  toggle_overlay: "ctrl+shift+o"
+  
+# Industrial Software Profiles
+profiles:
+  inovance_ircb500:
+    name: "Inovance IRCB500"
+    executable: "ircb500.exe"
+    window_title_pattern: "*IRCB500*"
+    ocr_settings:
+      confidence_threshold: 0.6
+      languages: ["ch"]
+    ui_regions:
+      toolbar: [0, 0, 800, 100]
+      menu: [0, 100, 200, 600]
+      status: [0, 600, 800, 50]
+      
+  siemens_step7:
+    name: "Siemens STEP 7"
+    executable: "s7prjmgr.exe"
+    window_title_pattern: "*STEP*"
+    ocr_settings:
+      confidence_threshold: 0.7
+      languages: ["ch", "de"]
+      
+  mitsubishi_gx:
+    name: "Mitsubishi GX Developer"
+    executable: "gppw.exe"
+    window_title_pattern: "*GX Developer*"
+    ocr_settings:
+      confidence_threshold: 0.7
+      languages: ["ch", "jp"]

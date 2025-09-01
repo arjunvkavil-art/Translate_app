@@ -1,0 +1,54 @@
+{
+  "name": "Mitsubishi GX Developer",
+  "description": "Mitsubishi PLC programming software",
+  "executable": "gppw.exe",
+  "window_title_pattern": "*GX Developer*",
+  "manufacturer": "Mitsubishi",
+  "category": "plc_software",
+  
+  "ocr_settings": {
+    "confidence_threshold": 0.7,
+    "languages": ["ch", "jp", "en"],
+    "preprocessing": {
+      "denoise": true,
+      "enhance_contrast": true,
+      "scale_factor": 1.8
+    }
+  },
+  
+  "ui_regions": {
+    "project_window": [0, 50, 300, 600],
+    "ladder_editor": [300, 50, 500, 400],
+    "device_monitor": [300, 450, 500, 200],
+    "output_window": [0, 650, 800, 100]
+  },
+  
+  "common_terms": {
+    "项目": "Project",
+    "程序": "Program",
+    "参数": "Parameter",
+    "设备": "Device",
+    "监视": "Monitor",
+    "梯形图": "Ladder Diagram",
+    "指令表": "Instruction List",
+    "结构化文本": "Structured Text",
+    "功能块图": "Function Block Diagram",
+    "顺序功能图": "Sequential Function Chart",
+    "输入": "Input",
+    "输出": "Output",
+    "内部继电器": "Internal Relay",
+    "定时器": "Timer",
+    "计数器": "Counter",
+    "数据寄存器": "Data Register",
+    "特殊继电器": "Special Relay",
+    "编译": "Compile",
+    "传送": "Transfer",
+    "验证": "Verify",
+    "在线编辑": "Online Edit",
+    "离线编辑": "Offline Edit",
+    "仿真": "Simulation",
+    "调试": "Debug",
+    "强制": "Force",
+    "释放": "Release"
+  }
+}
