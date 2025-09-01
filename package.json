@@ -1,19 +1,21 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "description": "",
+  "name": "live-screen-translator",
+  "version": "2.0.0",
+  "description": "Powerful Live Screen Translator for Industrial Software with Advanced OCR and Translation Capabilities",
   "main": "electron.js",
   "scripts": {
     "start": "node_modules/.bin/electron .",
+    "dev": "node_modules/.bin/electron . --dev",
+    "build": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arjunvkavil-art/Translate_app.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["screen-translator", "ocr", "translation", "industrial-software", "chinese-translation"],
+  "author": "Live Screen Translator Team",
+  "license": "MIT",
   "type": "commonjs",
   "bugs": {
     "url": "https://github.com/arjunvkavil-art/Translate_app/issues"
@@ -24,7 +26,37 @@
     "express": "^5.1.0",
     "tesseract.js": "^6.0.1",
     "translate-google": "^1.5.0",
-    "ws": "^8.18.3"
+    "ws": "^8.18.3",
+    "sqlite3": "^5.1.6",
+    "openai": "^4.20.0",
+    "axios": "^1.6.0",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "uuid": "^9.0.1",
+    "moment": "^2.29.4",
+    "lodash": "^4.17.21"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.livescreentranslator.app",
+    "productName": "Live Screen Translator",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
 }
